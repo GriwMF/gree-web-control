@@ -1,0 +1,17 @@
+<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+{% for device in devices %}
+<h1>Hello, {{ device.name }}!</h1>
+<form action="on" method="post" target="dummyframe">
+  <input type="text" name="ip" hidden value="{{device.ip}}">
+  <input type="text" name="cid" hidden value="{{device.cid}}">
+  <input type="text" name="key" hidden value="{{String::from_utf8(device.key.clone()).expect("Found invalid UTF-8")}}">
+  <input type="submit" value="On" />
+</form>
+
+<form action="off" method="post" target="dummyframe">
+  <input type="text" name="ip" hidden value="{{device.ip}}">
+  <input type="text" name="cid" hidden value="{{device.cid}}">
+  <input type="text" name="key" hidden value="{{String::from_utf8(device.key.clone()).expect("Found invalid UTF-8")}}">
+  <input type="submit" value="Off" />
+</form>
+{% endfor %}
